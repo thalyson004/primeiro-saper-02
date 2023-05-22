@@ -1,6 +1,7 @@
 package com.saper.primeiro;
 
 import com.saper.primeiro.dtos.CostResponseDTO;
+import com.saper.primeiro.dtos.PriceResponseDTO;
 import com.saper.primeiro.services.PayService;
 import com.saper.primeiro.services.TimeService;
 import com.saper.primeiro.services.TypeService;
@@ -48,10 +49,8 @@ public class PrimeiroApplication implements CommandLineRunner {
 	}
 
 	@GetMapping("/price")
-	public HashMap<String, Object> price(){
-		HashMap<String, Object> ans = new HashMap<>();
-		ans.put("moto", typeService.calcType("moto"));
-		ans.put("carro", typeService.calcType("carro"));
-		return ans;
+	public PriceResponseDTO price(){
+		return new PriceResponseDTO(typeService.calcType("carro"),
+									typeService.calcType("moto"));
 	}
 }
